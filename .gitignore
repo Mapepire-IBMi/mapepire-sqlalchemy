@@ -1,0 +1,16 @@
+*.pyc
+__pycache__/
+*.swp
+*.orig
+build
+tmp
+dist
+.venv
+*.egg-info/
+.coverage
+.idea/
+.pytest_cache/
+docs/_*
+poetry.lock
+.env
+test.cfg

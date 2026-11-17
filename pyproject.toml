@@ -1,0 +1,47 @@
+[project]
+name = "sqlalchemy-mapepire"
+version = "0.1.0.dev0"
+description = "Experimental SQLAlchemy dialect for Db2 for IBM i over Mapepire"
+readme = "README.md"
+license = "Apache-2.0"
+keywords = ["sqlalchemy", "database", "ibm", "ibmi", "db2", "mapepire"]
+requires-python = ">=3.10"
+dependencies = [
+    "sqlalchemy (>=2.0,<3.0)",
+    # The dbapi module subclasses mapepire-python's PEP 249 classes and uses a
+    # few of their internals, so stay on a known major version.
+    "mapepire-python (>=2.0,<3.0)",
+]
+classifiers = [
+    "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
+    "Operating System :: OS Independent",
+    "Topic :: Database :: Front-Ends",
+]
+
+[dependency-groups]
+test = [
+    "pytest >=7.2.1",
+]
+lint = [
+    "flake8",
+    "black",
+]
+dev = [
+    { include-group = "test" },
+    { include-group = "lint" },
+]
+
+[project.entry-points."sqlalchemy.dialects"]
+"ibmi.mapepire" = "sqlalchemy_mapepire.base:IBMiMapepireDialect"
+mapepire = "sqlalchemy_mapepire.base:IBMiMapepireDialect"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["sqlalchemy_mapepire"]
+
+[tool.black]
+line-length = 88
